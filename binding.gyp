@@ -10,7 +10,6 @@
       }
     }, { # 'OS!="win"'
       'variables': {
-        'deps_aws%': './deps/aws-lambda',
         'with_jpeg%': '<!(./util/has_lib.sh jpeg)',
         'with_gif%': '<!(./util/has_lib.sh gif)',
         # disable pango as it causes issues with freetype.
@@ -39,46 +38,10 @@
         }, { # 'OS!="win"'
           'copies': [{
             'destination': '<(PRODUCT_DIR)',
-            'files': [
-                 '<(deps_aws)/libGL.so.1',
-                 '<(deps_aws)/libICE.so.6',
-                 '<(deps_aws)/libSM.so.6',
-                 '<(deps_aws)/libX11-xcb.so.1',
-                 '<(deps_aws)/libX11.so.6',
-                 '<(deps_aws)/libXau.so.6',
-                 '<(deps_aws)/libXdamage.so.1',
-                 '<(deps_aws)/libXext.so.6',
-                 '<(deps_aws)/libXfixes.so.3',
-                 '<(deps_aws)/libXrender.so.1',
-                 '<(deps_aws)/libXxf86vm.so.1',
-                 '<(deps_aws)/libc.so.6',
-                 '<(deps_aws)/libcairo.so.2',
-                 '<(deps_aws)/libdl.so.2',
-                 '<(deps_aws)/libdrm.so.2',
-                 '<(deps_aws)/libexpat.so.1',
-                 '<(deps_aws)/libfontconfig.so.1',
-                 '<(deps_aws)/libfreetype.so.6',
-                 '<(deps_aws)/libgcc_s.so.1',
-                 '<(deps_aws)/libgif.so.4',
-                 '<(deps_aws)/libglapi.so.0',
-                 '<(deps_aws)/libjpeg.so.62',
-                 '<(deps_aws)/libm.so.6',
-                 '<(deps_aws)/libpixman-1.so.0',
-                 '<(deps_aws)/libpng12.so.0',
-                 '<(deps_aws)/libpthread.so.0',
-                 '<(deps_aws)/librt.so.1',
-                 '<(deps_aws)/libselinux.so.1',
-                 '<(deps_aws)/libstdc++.so.6',
-                 '<(deps_aws)/libuuid.so.1',
-                 '<(deps_aws)/libxcb-dri2.so.0',
-                 '<(deps_aws)/libxcb-glx.so.0',
-                 '<(deps_aws)/libxcb-render.so.0',
-                 '<(deps_aws)/libxcb-shm.so.0',
-                 '<(deps_aws)/libxcb.so.1',
-                 '<(deps_aws)/libz.so.1',
-             ],
+            'files': [ '<!@(ls ./deps/aws_lambda/*)' ],
+          }]
         }]
-      ]
+      ],
     },
     {
       'target_name': 'canvas',
